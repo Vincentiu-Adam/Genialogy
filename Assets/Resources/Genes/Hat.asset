@@ -13,9 +13,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 3
   Values:
-  - Name: Hat 1
-    Image: {fileID: 21300000, guid: 261df7aa4b1fe16499952f0345a26cd8, type: 3}
-  - Name: Hat 2
-    Image: {fileID: 21300000, guid: 431f566946ebc284180f91f416e0d999, type: 3}
-  - Name: Hat 3
-    Image: {fileID: 21300000, guid: e0fab01b0fe3cc143895b6bfe56b22c0, type: 3}
+  - Name: AfroHair
+    Image: {fileID: 21300000, guid: 99f8640cefe68be4d9356839fcc7a58b, type: 3}
+    Outline: {fileID: 21300000, guid: 71254d3c2ef81434b902b550f1b1be16, type: 3}
+  - Name: Cap
+    Image: {fileID: 21300000, guid: 6005a689e0ed45445b598ab0a02211f1, type: 3}
+    Outline: {fileID: 21300000, guid: bec273d6553cfe047b7349e3796b0035, type: 3}
+  - Name: EyesUp
+    Image: {fileID: 21300000, guid: e92ec024eeb1e6743ac2677f892c23a1, type: 3}
+    Outline: {fileID: 21300000, guid: 9a4e83f4453f29d4cbabe71778dfd67c, type: 3}
+  - Name: Halo
+    Image: {fileID: 21300000, guid: 3e3c81f34510769449f8115208d58104, type: 3}
+    Outline: {fileID: 21300000, guid: 3e3c81f34510769449f8115208d58104, type: 3}
+  - Name: Hat
+    Image: {fileID: 21300000, guid: f05318707e4cd7a42a672545e8d66799, type: 3}
+    Outline: {fileID: 21300000, guid: 2fa1b6414e9d6bd4494a608099fd9f0c, type: 3}
+  - Name: Horns
+    Image: {fileID: 21300000, guid: 59c0e76cf9411c5488c4bfa7dfb304c8, type: 3}
+    Outline: {fileID: 21300000, guid: ec5833cf599e8c943aa2bbbb7f6a1dd1, type: 3}
+  - Name: PartyHat
+    Image: {fileID: 21300000, guid: 1c324a98fb2c1154ca1b2298614035eb, type: 3}
+    Outline: {fileID: 21300000, guid: 31de00bfddeb51045b78e35599933039, type: 3}
+  - Name: Unicorn
+    Image: {fileID: 21300000, guid: 8d6ec653e6b7d3c43adb0ffc28872949, type: 3}
+    Outline: {fileID: 21300000, guid: fa4313864b4cd14449f081e7c9e14f69, type: 3}

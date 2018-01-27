@@ -17,6 +17,7 @@ public class GeneValue
     public string Name;
 
     public Sprite Image;
+    public Sprite Outline;
 }
 
 [CreateAssetMenu (menuName = "Genialogy/Gene")]

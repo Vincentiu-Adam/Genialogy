@@ -112,9 +112,6 @@ public class Alien : MonoBehaviour
 
         OnDominantClicked          += callback;
         OnDominantColorGeneClicked += colorCallback;
-
-        //disable background image, only used for scene preview
-        GetComponent<Image>().enabled = false;
     }
 
     private void OnDestroy()
@@ -204,7 +201,10 @@ public class Alien : MonoBehaviour
             return;
         }
 
-        geneValue.GeneSlot.Image.sprite = geneValue.GeneData.Values[geneValue.Value].Image;
+        GeneValue geneDataValue = geneValue.GeneData.Values[geneValue.Value];
+
+        geneValue.GeneSlot.Image.sprite        = geneDataValue.Image;
+        geneValue.GeneSlot.ImageOutLine.sprite = geneDataValue.Outline;
     }
 
     private void SetGeneColor()

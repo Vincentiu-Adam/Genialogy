@@ -11,11 +11,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a02ccc21969a781478788d1e4307875f, type: 3}
   m_Name: Head
   m_EditorClassIdentifier: 
-  m_Type: 0
+  Type: 0
   Values:
-  - Name: Head 1
-    Image: {fileID: 21300000, guid: b99fdb934745b3d47832559ab8160145, type: 3}
-  - Name: Head 2
-    Image: {fileID: 21300000, guid: 190b782f007558e43a4d101871fe1aaa, type: 3}
-  - Name: Head 3
-    Image: {fileID: 21300000, guid: e5fe7439241af2149aebbc914df8f4d9, type: 3}
+  - Name: Angry
+    Image: {fileID: 21300000, guid: 869febe253291d948828b1691eda9b4d, type: 3}
+    Outline: {fileID: 21300000, guid: 1675a6429982df944adbd3fb956d4ceb, type: 3}
+  - Name: Eyes
+    Image: {fileID: 21300000, guid: a24d8da27dc0ae940934daeb23c914b9, type: 3}
+    Outline: {fileID: 21300000, guid: 683d7303689099e4bb3045cd330ac61e, type: 3}
+  - Name: Hexagonal
+    Image: {fileID: 21300000, guid: 683d7303689099e4bb3045cd330ac61e, type: 3}
+    Outline: {fileID: 21300000, guid: 470a1efd3731952499133be48162f018, type: 3}
+  - Name: Long
+    Image: {fileID: 21300000, guid: d1b6fec9eca9d1641b867bdb6ff2bb71, type: 3}
+    Outline: {fileID: 21300000, guid: d57e2d56582142346abbc25b23e8afa3, type: 3}
+  - Name: Rectangle
+    Image: {fileID: 21300000, guid: d990adfd3ae9b4145b7dac66d3107e98, type: 3}
+    Outline: {fileID: 21300000, guid: c2f879166c821774fbd99cfb99532fa1, type: 3}
+  - Name: SmileHead
+    Image: {fileID: 21300000, guid: 9b9d4e1a76a0d43479ce0e85ff63a6e2, type: 3}
+    Outline: {fileID: 21300000, guid: abf1e361e38936e44b78299e97945643, type: 3}
+  - Name: Triangle
+    Image: {fileID: 21300000, guid: b6ee822f12462e6409f066c5fce887b3, type: 3}
+    Outline: {fileID: 21300000, guid: f8c068a3b9ffd6c45936c13298b5d3c9, type: 3}
+  - Name: Ursine
+    Image: {fileID: 21300000, guid: 2138eba9852bcb345b7a935df1e59c60, type: 3}
+    Outline: {fileID: 21300000, guid: 4acac79472e9da549b86ccc098a4f0d5, type: 3}

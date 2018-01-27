@@ -13,9 +13,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 1
   Values:
-  - Name: Round
-    Image: {fileID: 21300000, guid: 3da2b3d8a2a75d749926eb67d04b2707, type: 3}
-  - Name: Thin
-    Image: {fileID: 21300000, guid: 17a6873efbd91dc40a912095d610c43e, type: 3}
-  - Name: Body 3
-    Image: {fileID: 21300000, guid: 451d78f47e7d99c4fabe24679f8732ba, type: 3}
+  - Name: FatBody
+    Image: {fileID: 21300000, guid: 31fe138c574b8dd4cadef67e22c3107d, type: 3}
+    Outline: {fileID: 21300000, guid: 506879496ea92b843953a92efc6c3d70, type: 3}
+  - Name: LongArms
+    Image: {fileID: 21300000, guid: eaf3e4a6b544a5941966cfe5108a01ea, type: 3}
+    Outline: {fileID: 21300000, guid: a3a886e83430b614798cbe5b32fea195, type: 3}
+  - Name: MuscledBody
+    Image: {fileID: 21300000, guid: bcb27ecb9e6107b49bf0c0260d29ca2f, type: 3}
+    Outline: {fileID: 21300000, guid: b28df8476018f6a47bb584eab0a6ba63, type: 3}
+  - Name: SanicBody
+    Image: {fileID: 21300000, guid: 8ff4dd34ef7405448a47e3427ee4f985, type: 3}
+    Outline: {fileID: 21300000, guid: 6e6dfe8c4e5f01d47bfdd787a7a74d09, type: 3}
+  - Name: SkeletonBody
+    Image: {fileID: 21300000, guid: ae31633495a73d34e8e3c4a56812f9ab, type: 3}
+    Outline: {fileID: 21300000, guid: 0ff51cdea65b0cc4cad76fa18145222c, type: 3}
+  - Name: WashingMachine
+    Image: {fileID: 21300000, guid: 41873e959db85524bbfcde9711d002ab, type: 3}
+    Outline: {fileID: 21300000, guid: a2d479a9b152c9d4f8c2474971780365, type: 3}
+  - Name: WingedBody
+    Image: {fileID: 21300000, guid: f04828dcf8eb21549b50575ea55f7ec4, type: 3}
+    Outline: {fileID: 21300000, guid: 367ca447840f08442869d39b8cf2c183, type: 3}
+  - Name: WoolyBody
+    Image: {fileID: 21300000, guid: c4d0e420f844d1b4d86fbab86d16fb4f, type: 3}
+    Outline: {fileID: 21300000, guid: 8097f7257593a3c469b18363377e0a18, type: 3}

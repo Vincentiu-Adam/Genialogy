@@ -13,9 +13,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Type: 2
   Values:
-  - Name: Legs 1
-    Image: {fileID: 21300000, guid: 06b975f17392f6f4d890bd9dcb81dbc0, type: 3}
-  - Name: Legs 2
-    Image: {fileID: 21300000, guid: a3c53106d4717c946aca09bf225b7ffe, type: 3}
-  - Name: Legs 3
-    Image: {fileID: 21300000, guid: 21d5e634204a9184ab91c171d62ecac6, type: 3}
+  - Name: Bird
+    Image: {fileID: 21300000, guid: c397aa067c7bdee4682307b25d6939ee, type: 3}
+    Outline: {fileID: 21300000, guid: 40e69955298a32649aa688235bd4158a, type: 3}
+  - Name: Boot
+    Image: {fileID: 21300000, guid: 21d7e7b3e72f11948b972d0926832934, type: 3}
+    Outline: {fileID: 21300000, guid: ac0016864966ffe4c9ce2769cfc06923, type: 3}
+  - Name: Fluffy
+    Image: {fileID: 21300000, guid: 3f6c9d21aa2015a49963f2cf0a67f3a6, type: 3}
+    Outline: {fileID: 21300000, guid: 484533fb43d949d47bf5cb546645b8d0, type: 3}
+  - Name: Frog
+    Image: {fileID: 21300000, guid: 3228978ddfff4e9489c8d10dc313cb4c, type: 3}
+    Outline: {fileID: 21300000, guid: e0fb3915a0911d9459c3c1ddf4eb5204, type: 3}
+  - Name: Muscled
+    Image: {fileID: 21300000, guid: 197c3a371a84de247bb7af643c2a801c, type: 3}
+    Outline: {fileID: 21300000, guid: cca4450bbd206f84091bc53e3541cfc3, type: 3}
+  - Name: Pirate
+    Image: {fileID: 21300000, guid: 572a11b02ac70384ca65913527cce7de, type: 3}
+    Outline: {fileID: 21300000, guid: 47902697cd5cdcf48bf2a6698f512d2e, type: 3}
+  - Name: Spider
+    Image: {fileID: 21300000, guid: 25d23814f02c2f04d923229ba7d6f3d4, type: 3}
+    Outline: {fileID: 21300000, guid: d61a44002c24b444ab0530d90cc59424, type: 3}
+  - Name: Tentacles
+    Image: {fileID: 21300000, guid: f93e363ffd5a11341a55ee95753787d1, type: 3}
+    Outline: {fileID: 21300000, guid: 76021f731f917df4f9b85421755f77f5, type: 3}

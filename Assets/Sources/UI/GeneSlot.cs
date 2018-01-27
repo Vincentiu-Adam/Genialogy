@@ -9,9 +9,13 @@ public class GeneSlot : MonoBehaviour
     private Image m_Sprite;
 
     [SerializeField]
+    private Image m_SpriteOutline;
+
+    [SerializeField]
     private Toggle m_ToggleIsDominant;
 
-    public Image Image { get { return m_Sprite; } }
+    public Image Image        { get { return m_Sprite; } }
+    public Image ImageOutLine { get { return m_SpriteOutline; } }
 
     private GeneType m_GeneType;
 
