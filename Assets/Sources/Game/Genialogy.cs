@@ -16,6 +16,7 @@ public class GeneResolution
     }
 }
 
+[System.Serializable]
 public class AlienGeneData
 {
     public GeneType GeneType;
@@ -35,7 +36,7 @@ public class Genialogy : MonoBehaviour
     private int m_DominantGenesAvailable;
 
     [SerializeField]
-    private List<AlienGeneValue> m_TargetGeneValues;
+    private List<AlienGeneData> m_TargetGeneValues;
 
     [SerializeField]
     private Transform m_AlienContainer;
@@ -48,17 +49,19 @@ public class Genialogy : MonoBehaviour
 
     private const int MaxStars = 3;
 
-    private const string GeneResourcePath = "Genes";
+    private const string GeneResourcePath = "Genes/";
 
-    private int m_FirstGenerationAlienCount;
     private int m_Tries;
 
     private AlienGeneData m_AlienGeneData = new AlienGeneData();
+
+    private ColorScriptableObject m_ColorGene;
 
     private List<GeneScriptableObject> m_Genes = new List<GeneScriptableObject>(); //list of all game genes
 
     private List<GeneResolution> m_GeneResolutions = new List<GeneResolution>();
 
+    private List<GeneType> m_AllGeneTypes            = new List<GeneType>();
     private List<GeneType> m_PickedGenes             = new List<GeneType>();
     private List<int>      m_AvailablePriorityValues = new List<int>();
 
@@ -67,13 +70,25 @@ public class Genialogy : MonoBehaviour
     private void Awake()
     {
         //load all genes from resources
+        m_ColorGene = Resources.Load<ColorScriptableObject>(GeneResourcePath + "Color");
+
         m_Genes.AddRange(Resources.LoadAll<GeneScriptableObject>(GeneResourcePath));
+
+        FetchGeneTypes();
 
         PickGenes(m_GenesPerCharacter);
 
         FetchAndInitAliens();
 
         SetDominantGenesAvailableText(m_DominantGenesAvailable);
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < m_Aliens.Count; i++)
+        {
+            m_Aliens[i].RemoveCallback(OnDominantClicked, OnDominantClicked);
+        }
     }
 
     public void FuseAllAliens()
@@ -105,20 +120,28 @@ public class Genialogy : MonoBehaviour
         m_PickedGenes.Clear();
         m_GeneResolutions.Clear();
 
-        while(m_PickedGenes.Count < genesPerCharacter)
+        while (m_PickedGenes.Count < genesPerCharacter)
         {
-            GeneType randomGeneType = m_Genes[Random.Range(0, m_Genes.Count)].Type;
+            GeneType randomGeneType = m_AllGeneTypes[Random.Range(0, m_AllGeneTypes.Count)];
+            m_AllGeneTypes.Remove(randomGeneType);
 
             if (!m_PickedGenes.Contains(randomGeneType))
             {
                 GenerateGeneResolution(randomGeneType);
                 m_PickedGenes.Add(randomGeneType);
             }
+
         }
     }
 
     private void GenerateGeneResolution(GeneType geneType)
     {
+        //skip color type
+        if (geneType == GeneType.COLOR)
+        {
+            return;
+        }
+
         GeneResolution geneResolution = new GeneResolution(geneType);
 
         m_AvailablePriorityValues.Clear();
@@ -140,13 +163,25 @@ public class Genialogy : MonoBehaviour
         m_GeneResolutions.Add(geneResolution);
     }
 
+    private void FetchGeneTypes()
+    {
+        m_AllGeneTypes.Clear();
+
+        for (int i = 0; i < m_Genes.Count; i++)
+        {
+            m_AllGeneTypes.Add(m_Genes[i].Type);
+        }
+
+        m_AllGeneTypes.Add(m_ColorGene.Type);
+    }
+
     private void FetchAndInitAliens()
     {
         m_Aliens.Clear();
         foreach(Transform child in m_AlienContainer)
         {
             Alien currentAlien = child.GetComponent<Alien>();
-            currentAlien.Init(m_PickedGenes, m_GeneSlotPrefab, OnDominantClicked);
+            currentAlien.Init(m_PickedGenes, m_GeneSlotPrefab, OnDominantClicked, OnDominantClicked);
 
             m_Aliens.Add(currentAlien);
         }
@@ -174,36 +209,50 @@ public class Genialogy : MonoBehaviour
 
     private void FuseAlienGeneType(GeneType geneType, Alien firstParent, Alien secondParent)
     {
+        
         AlienGeneValue firstParentGeneValue  = firstParent.GetGeneFromType(geneType),
                        secondParentGeneValue = secondParent.GetGeneFromType(geneType);
 
+        AlienColorGeneValue firstParentColorGeneValue  = firstParent.ColorGeneValue,
+                            secondParentColorGeneValue = secondParent.ColorGeneValue;
+
         m_AlienGeneData.GeneType = geneType;
 
+        bool isColorGene = geneType == GeneType.COLOR;
+
         //if either parent has a predominant gene then use that gene value for the child
-        if (firstParentGeneValue.IsDominant)
+        if ((isColorGene && firstParentColorGeneValue.IsDominant) || (!isColorGene && firstParentGeneValue.IsDominant))
         {
-            m_AlienGeneData.Value = firstParentGeneValue.Value;
+            m_AlienGeneData.Value = isColorGene ? firstParentColorGeneValue.Value : firstParentGeneValue.Value;
             firstParent.Child.SetGeneData(m_AlienGeneData);
 
             return;
         }
 
-        if (secondParentGeneValue.IsDominant)
+        if ((isColorGene && secondParentColorGeneValue.IsDominant) || (!isColorGene && secondParentGeneValue.IsDominant))
         {
-            m_AlienGeneData.Value = secondParentGeneValue.Value;
+            m_AlienGeneData.Value = isColorGene ? secondParentColorGeneValue.Value : secondParentGeneValue.Value;
             firstParent.Child.SetGeneData(m_AlienGeneData); //both parents' child should be the same
 
             return;
         }
 
         //otherwise resolve based on priority
-        GeneResolution geneResolution = GetGeneResolutionFromType(geneType);
-
-        int firstParentPriorityGeneValue  = geneResolution.PriorityOrder.IndexOf(firstParentGeneValue.Value),
+        if (isColorGene)
+        {
+            m_AlienGeneData.Value = ResolveColorRules(firstParentColorGeneValue, secondParentColorGeneValue);
+        }
+        else
+        {
+            GeneResolution geneResolution = GetGeneResolutionFromType(geneType);
+            
+            int firstParentPriorityGeneValue  = geneResolution.PriorityOrder.IndexOf(firstParentGeneValue.Value),
             secondParentPriorityGeneValue = geneResolution.PriorityOrder.IndexOf(secondParentGeneValue.Value);
-
-        //lowest priority wins
-        m_AlienGeneData.Value = firstParentPriorityGeneValue < secondParentPriorityGeneValue ? firstParentGeneValue.Value : secondParentGeneValue.Value;
+            
+            //lowest priority wins
+            m_AlienGeneData.Value = firstParentPriorityGeneValue < secondParentPriorityGeneValue ? firstParentGeneValue.Value : secondParentGeneValue.Value;
+        }
+            
         firstParent.Child.SetGeneData(m_AlienGeneData);
     }
 
@@ -219,8 +268,10 @@ public class Genialogy : MonoBehaviour
         {
             GeneType currentGeneType = m_PickedGenes[i];
 
-            int targetAlienValue = GetAlienGeneFromType(currentGeneType).Value,
-                finalAlienValue  = finalAlien.GetGeneFromType(currentGeneType).Value;
+            bool isColor = currentGeneType == GeneType.COLOR;
+
+            int targetAlienValue = GetAlienGeneValueFromType(currentGeneType),
+                finalAlienValue  = isColor ? finalAlien.ColorGeneValue.Value : finalAlien.GetGeneFromType(currentGeneType).Value;
 
             if (targetAlienValue != finalAlienValue)
             {
@@ -229,6 +280,21 @@ public class Genialogy : MonoBehaviour
         }
 
         return true;
+    }
+
+    private int ResolveColorRules(AlienColorGeneValue firstParentColorGene, AlienColorGeneValue secondParentColorGene)
+    {
+        List<ColorRule> colorRules = firstParentColorGene.ColorGeneData.ColorRules;
+        for (int i = 0; i < colorRules.Count; i++)
+        {
+            ColorRule currentColorRule = colorRules[i];
+            if (currentColorRule.FirstColor == firstParentColorGene.Value && currentColorRule.SecondColor == secondParentColorGene.Value)
+            {
+                return currentColorRule.ResultColor;
+            }
+        }
+        
+        return firstParentColorGene.ColorGeneData.Values.IndexOf(firstParentColorGene.ColorGeneData.DefaultColor);
     }
 
     private int GetGeneValuesCount(GeneType geneType)
@@ -265,18 +331,18 @@ public class Genialogy : MonoBehaviour
         return null;
     }
 
-    public AlienGeneValue GetAlienGeneFromType(GeneType geneType)
+    public int GetAlienGeneValueFromType(GeneType geneType)
     {
         for (int i = 0; i < m_TargetGeneValues.Count; i++)
         {
-            AlienGeneValue currentGeneValue = m_TargetGeneValues[i];
-            if (currentGeneValue.GeneData.Type == geneType)
+            AlienGeneData currentGeneValue = m_TargetGeneValues[i];
+            if (currentGeneValue.GeneType == geneType)
             {
-                return currentGeneValue;
+                return currentGeneValue.Value;
             }
         }
 
-        return null;
+        return -1;
     }
 
     private void SetDominantGenesAvailableText(int dominantGenesAvailable)
@@ -287,6 +353,22 @@ public class Genialogy : MonoBehaviour
     public void OnDominantClicked(AlienGeneValue geneValue)
     {
         //toggle dominant
+        bool isDominant = !geneValue.IsDominant;
+
+        //don't activate if none available
+        if (isDominant && m_DominantGenesAvailable == 0)
+        {
+            return;
+        }
+
+        geneValue.SetDominant(isDominant);
+        m_DominantGenesAvailable = isDominant ? m_DominantGenesAvailable - 1 : m_DominantGenesAvailable + 1;
+
+        SetDominantGenesAvailableText(m_DominantGenesAvailable);
+    }
+
+    public void OnDominantClicked(AlienColorGeneValue geneValue)
+    {
         bool isDominant = !geneValue.IsDominant;
 
         //don't activate if none available

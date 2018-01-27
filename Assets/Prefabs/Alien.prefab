@@ -95,6 +95,11 @@ MonoBehaviour:
     Value: -1
     GeneData: {fileID: 11400000, guid: 9a0de9bdd45a0b44a9b7aea98d285407, type: 2}
     GeneSlot: {fileID: 0}
+  m_ColorGeneValue:
+    IsDominant: 0
+    Value: 0
+    ColorGeneData: {fileID: 11400000, guid: 79ea22d5386ad694c9dca9a5114e5990, type: 2}
+    GeneSlot: {fileID: 0}
   m_GeneContainer: {fileID: 224634318688616292}
   m_Child: {fileID: 0}
   m_Parents: []

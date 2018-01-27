@@ -7,7 +7,8 @@ public enum GeneType
     HEAD,
     BODY,
     LEG,
-    HAT
+    HAT,
+    COLOR
 }
 
 [System.Serializable]
