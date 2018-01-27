@@ -14,6 +14,7 @@ public enum GeneType
 public class GeneValue
 {
     public string Name;
+
     public Sprite Image;
 }
 

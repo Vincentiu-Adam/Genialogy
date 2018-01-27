@@ -15,12 +15,24 @@ public class GeneResolution
     }
 }
 
+public class AlienGeneData
+{
+    public GeneType GeneType;
+
+    public int Value;
+}
+
 public class Genialogy : MonoBehaviour
 {
     [SerializeField]
     private int m_GenesPerCharacter;
 
+    [SerializeField]
+    private Transform m_AlienContainer;
+
     private const string GeneResourcePath = "Genes";
+
+    private AlienGeneData m_AlienGeneData = new AlienGeneData();
 
     private List<GeneScriptableObject> m_Genes = new List<GeneScriptableObject>(); //list of all game genes
 
@@ -29,12 +41,26 @@ public class Genialogy : MonoBehaviour
     private List<GeneType> m_PickedGenes             = new List<GeneType>();
     private List<int>      m_AvailablePriorityValues = new List<int>();
 
+    private List<Alien> m_Aliens = new List<Alien>();
+
     private void Awake()
     {
         //load all genes from resources
         m_Genes.AddRange(Resources.LoadAll<GeneScriptableObject>(GeneResourcePath));
 
         PickGenes(m_GenesPerCharacter);
+
+        FetchAliens();
+    }
+
+    public bool IsFuse;
+    private void Update()
+    {
+        if (IsFuse)
+        {
+            FuseAliens(m_Aliens[0], m_Aliens[1]);
+            IsFuse = false;
+        }
     }
 
     private void PickGenes(int genesPerCharacter)
@@ -78,6 +104,59 @@ public class Genialogy : MonoBehaviour
         m_GeneResolutions.Add(geneResolution);
     }
 
+    private void FetchAliens()
+    {
+        m_Aliens.Clear();
+        foreach(Transform child in m_AlienContainer)
+        {
+            m_Aliens.Add(child.GetComponent<Alien>());
+        }
+    }
+
+    private void FuseAliens(Alien firstParent, Alien secondParent)
+    {
+        //fuse all picked gene types for both aliens
+        for (int i = 0; i < m_PickedGenes.Count; i++)
+        {
+            FuseAlienGeneType(m_PickedGenes[i], firstParent, secondParent);
+        }
+    }
+
+    private void FuseAlienGeneType(GeneType geneType, Alien firstParent, Alien secondParent)
+    {
+        AlienGeneValue firstParentGeneValue  = firstParent.GetGeneFromType(geneType),
+                       secondParentGeneValue = secondParent.GetGeneFromType(geneType);
+
+        m_AlienGeneData.GeneType = geneType;
+
+        //if either parent has a predominant gene then use that gene value for the child
+        if (firstParentGeneValue.IsDominant)
+        {
+            m_AlienGeneData.Value = firstParentGeneValue.Value;
+            firstParent.Child.SetGeneData(m_AlienGeneData);
+
+            return;
+        }
+
+        if (secondParentGeneValue.IsDominant)
+        {
+            m_AlienGeneData.Value = secondParentGeneValue.Value;
+            firstParent.Child.SetGeneData(m_AlienGeneData); //both parents' child should be the same
+
+            return;
+        }
+
+        //otherwise resolve based on priority
+        GeneResolution geneResolution = GetGeneResolutionFromType(geneType);
+
+        int firstParentPriorityGeneValue  = geneResolution.PriorityOrder.IndexOf(firstParentGeneValue.Value),
+            secondParentPriorityGeneValue = geneResolution.PriorityOrder.IndexOf(secondParentGeneValue.Value);
+
+        //lowest priority wins
+        m_AlienGeneData.Value = firstParentPriorityGeneValue < secondParentPriorityGeneValue ? firstParentGeneValue.Value : secondParentGeneValue.Value;
+        firstParent.Child.SetGeneData(m_AlienGeneData);
+    }
+
     private int GetGeneValuesCount(GeneType geneType)
     {
         GeneScriptableObject geneScriptableObject = GetGeneFromType(geneType);
@@ -92,6 +171,20 @@ public class Genialogy : MonoBehaviour
             if (currentGeneScriptableObject.Type == geneType)
             {
                 return currentGeneScriptableObject;
+            }
+        }
+
+        return null;
+    }
+
+    private GeneResolution GetGeneResolutionFromType(GeneType geneType)
+    {
+        for (int i = 0; i < m_GeneResolutions.Count; i++)
+        {
+            GeneResolution currentGeneResolution = m_GeneResolutions[i];
+            if (currentGeneResolution.GeneType == geneType)
+            {
+                return currentGeneResolution;
             }
         }
 
