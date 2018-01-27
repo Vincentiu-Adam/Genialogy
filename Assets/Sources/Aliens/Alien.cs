@@ -11,6 +11,8 @@ public class AlienGeneValue
     public int Value;
 
     public GeneScriptableObject GeneData;
+
+    public GeneSlot GeneSlot;
 }
 
 public class Alien : MonoBehaviour
@@ -30,24 +32,22 @@ public class Alien : MonoBehaviour
     public Alien Child         { get { return m_Child; } }
     public List<Alien> Parents { get { return m_Parents; } }
 
-    private List<Image> m_GeneImages = new List<Image>();
-
-    private void Awake()
+    public void Init(List<GeneType> pickedGenes, GeneSlot geneSlotPrefab)
     {
-        foreach(Transform child in m_GeneContainer)
+        //instantiate genes and add to values
+        for (int i = 0; i < pickedGenes.Count; i++)
         {
-            m_GeneImages.Add(child.GetComponent<Image>());
+            AlienGeneValue currentGeneValue = GetGeneFromType(pickedGenes[i]);
+
+            GeneSlot geneSlot = Object.Instantiate(geneSlotPrefab, m_GeneContainer);
+            geneSlot.name = geneSlotPrefab.name + "_" + currentGeneValue.GeneData.Type;
+
+            currentGeneValue.GeneSlot = geneSlot;
+            SetGeneImage(currentGeneValue);
         }
 
-        Init();
-    }
-
-    private void Init()
-    {
-        for (int i = 0; i < m_GeneValues.Count; i++)
-        {
-            SetGeneImage(m_GeneValues[i]);
-        }
+        //disable background image, only used for scene preview
+        GetComponent<Image>().enabled = false;
     }
 
     public AlienGeneValue GetGeneFromType(GeneType geneType)
@@ -74,7 +74,12 @@ public class Alien : MonoBehaviour
 
     private void SetGeneImage(AlienGeneValue geneValue)
     {
-        int index = m_GeneValues.IndexOf(geneValue);
-        m_GeneImages[index].sprite = geneValue.GeneData.Values[geneValue.Value].Image;
+        //leave empty if negative
+        if (geneValue.Value < 0 || geneValue.Value >= geneValue.GeneData.Values.Count)
+        {
+            return;
+        }
+
+        geneValue.GeneSlot.Image.sprite = geneValue.GeneData.Values[geneValue.Value].Image;
     }
 }

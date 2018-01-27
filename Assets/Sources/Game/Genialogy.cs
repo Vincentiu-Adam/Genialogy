@@ -28,9 +28,17 @@ public class Genialogy : MonoBehaviour
     private int m_GenesPerCharacter;
 
     [SerializeField]
+    private int m_Generations;
+
+    [SerializeField]
     private Transform m_AlienContainer;
 
+    [SerializeField]
+    private GeneSlot m_GeneSlotPrefab;
+
     private const string GeneResourcePath = "Genes";
+
+    private int m_FirstGenerationAlienCount;
 
     private AlienGeneData m_AlienGeneData = new AlienGeneData();
 
@@ -50,16 +58,27 @@ public class Genialogy : MonoBehaviour
 
         PickGenes(m_GenesPerCharacter);
 
-        FetchAliens();
+        FetchAndInitAliens();
     }
 
-    public bool IsFuse;
-    private void Update()
+    public void FuseAllAliens()
     {
-        if (IsFuse)
+        //while still generations remaining, fuse aliens 2 by 2
+        int generationIndex = 0;
+
+        int generationsRemaining = m_Generations;
+        while (generationsRemaining > 1)
         {
-            FuseAliens(m_Aliens[0], m_Aliens[1]);
-            IsFuse = false;
+            int aliensPerGeneration = (int) Mathf.Pow(2, generationsRemaining - 1);
+
+            int aliensGenerationCount = generationIndex + aliensPerGeneration;
+            for (int i = generationIndex; i < aliensGenerationCount; i+=2)
+            {
+                FuseAliens(m_Aliens[i], m_Aliens[i+1]);
+            }
+
+            generationIndex += aliensPerGeneration;
+            generationsRemaining--;
         }
     }
 
@@ -104,12 +123,15 @@ public class Genialogy : MonoBehaviour
         m_GeneResolutions.Add(geneResolution);
     }
 
-    private void FetchAliens()
+    private void FetchAndInitAliens()
     {
         m_Aliens.Clear();
         foreach(Transform child in m_AlienContainer)
         {
-            m_Aliens.Add(child.GetComponent<Alien>());
+            Alien currentAlien = child.GetComponent<Alien>();
+            currentAlien.Init(m_PickedGenes, m_GeneSlotPrefab);
+
+            m_Aliens.Add(currentAlien);
         }
     }
 
