@@ -130,8 +130,11 @@ public class Genialogy : MonoBehaviour
                 GenerateGeneResolution(randomGeneType);
                 m_PickedGenes.Add(randomGeneType);
             }
-
         }
+
+        //setup picked genes in a prefedined order
+        m_PickedGenes.Clear();
+        m_PickedGenes.AddRange(new GeneType[] {GeneType.HAT, GeneType.HEAD, GeneType.BODY, GeneType.LEG, GeneType.COLOR});
     }
 
     private void GenerateGeneResolution(GeneType geneType)
