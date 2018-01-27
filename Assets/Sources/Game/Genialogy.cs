@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 using System.Collections.Generic;
 
@@ -31,10 +32,16 @@ public class Genialogy : MonoBehaviour
     private int m_Generations;
 
     [SerializeField]
+    private int m_DominantGenesAvailable;
+
+    [SerializeField]
     private Transform m_AlienContainer;
 
     [SerializeField]
     private GeneSlot m_GeneSlotPrefab;
+
+    [SerializeField]
+    private Text m_DominantGenesAvailableText;
 
     private const string GeneResourcePath = "Genes";
 
@@ -59,6 +66,8 @@ public class Genialogy : MonoBehaviour
         PickGenes(m_GenesPerCharacter);
 
         FetchAndInitAliens();
+
+        SetDominantGenesAvailableText(m_DominantGenesAvailable);
     }
 
     public void FuseAllAliens()
@@ -129,10 +138,13 @@ public class Genialogy : MonoBehaviour
         foreach(Transform child in m_AlienContainer)
         {
             Alien currentAlien = child.GetComponent<Alien>();
-            currentAlien.Init(m_PickedGenes, m_GeneSlotPrefab);
+            currentAlien.Init(m_PickedGenes, m_GeneSlotPrefab, OnDominantClicked);
 
             m_Aliens.Add(currentAlien);
         }
+
+        //disable dominant genes for last alien
+        m_Aliens[m_Aliens.Count - 1].DisableDominantGenes();
     }
 
     private void FuseAliens(Alien firstParent, Alien secondParent)
@@ -211,5 +223,27 @@ public class Genialogy : MonoBehaviour
         }
 
         return null;
+    }
+
+    private void SetDominantGenesAvailableText(int dominantGenesAvailable)
+    {
+        m_DominantGenesAvailableText.text = dominantGenesAvailable.ToString();
+    }
+
+    public void OnDominantClicked(AlienGeneValue geneValue)
+    {
+        //toggle dominant
+        bool isDominant = !geneValue.IsDominant;
+
+        //don't activate if none available
+        if (isDominant && m_DominantGenesAvailable == 0)
+        {
+            return;
+        }
+
+        geneValue.SetDominant(isDominant);
+        m_DominantGenesAvailable = isDominant ? m_DominantGenesAvailable - 1 : m_DominantGenesAvailable + 1;
+
+        SetDominantGenesAvailableText(m_DominantGenesAvailable);
     }
 }
