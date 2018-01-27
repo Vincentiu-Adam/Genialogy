@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a02ccc21969a781478788d1e4307875f, type: 3}
+  m_Name: Legs
+  m_EditorClassIdentifier: 
+  Type: 2
+  Values:
+  - Name: Legs 1
+    Image: {fileID: 21300000, guid: 06b975f17392f6f4d890bd9dcb81dbc0, type: 3}
+  - Name: Legs 2
+    Image: {fileID: 21300000, guid: a3c53106d4717c946aca09bf225b7ffe, type: 3}
+  - Name: Legs 3
+    Image: {fileID: 21300000, guid: 21d5e634204a9184ab91c171d62ecac6, type: 3}
