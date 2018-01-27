@@ -35,6 +35,9 @@ public class Genialogy : MonoBehaviour
     private int m_DominantGenesAvailable;
 
     [SerializeField]
+    private List<AlienGeneValue> m_TargetGeneValues;
+
+    [SerializeField]
     private Transform m_AlienContainer;
 
     [SerializeField]
@@ -43,9 +46,12 @@ public class Genialogy : MonoBehaviour
     [SerializeField]
     private Text m_DominantGenesAvailableText;
 
+    private const int MaxStars = 3;
+
     private const string GeneResourcePath = "Genes";
 
     private int m_FirstGenerationAlienCount;
+    private int m_Tries;
 
     private AlienGeneData m_AlienGeneData = new AlienGeneData();
 
@@ -89,6 +95,8 @@ public class Genialogy : MonoBehaviour
             generationIndex += aliensPerGeneration;
             generationsRemaining--;
         }
+
+        m_Tries++;
     }
 
     private void PickGenes(int genesPerCharacter)
@@ -154,6 +162,14 @@ public class Genialogy : MonoBehaviour
         {
             FuseAlienGeneType(m_PickedGenes[i], firstParent, secondParent);
         }
+
+        //check if last alien has the same gene values as our objective
+        if (IsObjectiveReached(m_Aliens[m_Aliens.Count - 1]))
+        {
+            Debug.Log("WAIT FOR IIIIT!!!");
+            Invoke("ObjectiveComplete", 1f);
+            return;
+        }
     }
 
     private void FuseAlienGeneType(GeneType geneType, Alien firstParent, Alien secondParent)
@@ -191,6 +207,30 @@ public class Genialogy : MonoBehaviour
         firstParent.Child.SetGeneData(m_AlienGeneData);
     }
 
+    private void ObjectiveComplete()
+    {
+        int stars = (int) Mathf.Max(0f, MaxStars - m_Tries);
+        Debug.Log("Objective completed with " + stars + " stars");
+    }
+
+    private bool IsObjectiveReached(Alien finalAlien)
+    {
+        for (int i = 0; i < m_PickedGenes.Count; i++)
+        {
+            GeneType currentGeneType = m_PickedGenes[i];
+
+            int targetAlienValue = GetAlienGeneFromType(currentGeneType).Value,
+                finalAlienValue  = finalAlien.GetGeneFromType(currentGeneType).Value;
+
+            if (targetAlienValue != finalAlienValue)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private int GetGeneValuesCount(GeneType geneType)
     {
         GeneScriptableObject geneScriptableObject = GetGeneFromType(geneType);
@@ -219,6 +259,20 @@ public class Genialogy : MonoBehaviour
             if (currentGeneResolution.GeneType == geneType)
             {
                 return currentGeneResolution;
+            }
+        }
+
+        return null;
+    }
+
+    public AlienGeneValue GetAlienGeneFromType(GeneType geneType)
+    {
+        for (int i = 0; i < m_TargetGeneValues.Count; i++)
+        {
+            AlienGeneValue currentGeneValue = m_TargetGeneValues[i];
+            if (currentGeneValue.GeneData.Type == geneType)
+            {
+                return currentGeneValue;
             }
         }
 
