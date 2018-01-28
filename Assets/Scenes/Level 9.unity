@@ -1238,6 +1238,11 @@ Prefab:
       propertyPath: m_Name
       value: Alien_1_2
       objectReference: {fileID: 0}
+    - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_ColorGeneValue.Value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb4424b8fd636294b84aa22f7d9c095d, type: 2}
   m_IsPrefabParent: 0

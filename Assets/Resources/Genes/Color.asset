@@ -46,3 +46,15 @@ MonoBehaviour:
     FirstColor: 0
     SecondColor: 2
     ResultColor: 5
+  - Name: Y + Y
+    FirstColor: 2
+    SecondColor: 2
+    ResultColor: 2
+  - Name: R + R
+    FirstColor: 0
+    SecondColor: 0
+    ResultColor: 0
+  - Name: B + B
+    FirstColor: 1
+    SecondColor: 1
+    ResultColor: 1

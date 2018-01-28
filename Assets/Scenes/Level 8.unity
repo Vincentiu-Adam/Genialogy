@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Board: {fileID: 114593420}
-  m_Limits: {x: 750, y: 250}
+  m_Limits: {x: 750, y: 350}
 --- !u!1 &1051067664
 GameObject:
   m_ObjectHideFlags: 0

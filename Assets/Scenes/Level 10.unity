@@ -3008,7 +3008,7 @@ Prefab:
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[0].Value
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
