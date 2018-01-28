@@ -529,7 +529,7 @@ Prefab:
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[1].Value
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
@@ -1455,7 +1455,7 @@ Prefab:
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[1].Value
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
@@ -1657,7 +1657,7 @@ Prefab:
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[1].Value
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
