@@ -12,6 +12,18 @@ public class VictoryUI : MonoBehaviour
     [SerializeField]
     private List<Toggle> m_Stars;
 
+    private static int CurrentLevel = 1;
+
+    private static SettingsScriptableObject SettingsScriptableObject;
+
+    private void Awake()
+    {
+        if (SettingsScriptableObject == null)
+        {
+            SettingsScriptableObject = Resources.Load<SettingsScriptableObject>("Settings");
+        }
+    }
+
     public void Init(int stars)
     {
         for (int i = 0; i < stars; i++)
@@ -28,5 +40,11 @@ public class VictoryUI : MonoBehaviour
     public void ReplayLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void NextLevel()
+    {
+        CurrentLevel = Mathf.Min(SettingsScriptableObject.MaxLevel, CurrentLevel + 1);
+        SceneManager.LoadScene("Level " + CurrentLevel);
     }
 }
