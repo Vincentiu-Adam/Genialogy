@@ -517,7 +517,7 @@ MonoBehaviour:
     Ignore: 1
     Value: 3
   m_AlienContainer: {fileID: 1180115}
-  m_OverrideGenePicks: 
+  m_OverrideGenePicks: 03000000000000000100000002000000
   m_GeneSlotPrefab: {fileID: 114648788229262218, guid: 2ff43ad6291688d428a9e53fe345591b,
     type: 2}
   m_DominantGenesAvailableText: {fileID: 117225580}
