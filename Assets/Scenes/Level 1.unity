@@ -848,7 +848,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Board: {fileID: 1173727522}
-  m_Limits: {x: 750, y: 350}
+  m_Limits: {x: 650, y: 350}
 --- !u!1 &1051067664
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea004a782577fb4c89ea83d821f2384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 15
+  m_Speed: 40
   m_Limits: {x: 1, y: 3}
   m_Canvas: {fileID: 1051067667}
 --- !u!1 &1173727521

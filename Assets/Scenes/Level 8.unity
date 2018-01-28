@@ -1174,8 +1174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2873ae8e3fce5a47bce013adb5b0a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Board: {fileID: 0}
-  m_Limits: {x: 960, y: 540}
+  m_Board: {fileID: 114593420}
+  m_Limits: {x: 750, y: 250}
 --- !u!1 &1051067664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,8 +1283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea004a782577fb4c89ea83d821f2384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 2
-  m_Limits: {x: 0.5, y: 1}
+  m_Speed: 40
+  m_Limits: {x: 1, y: 3}
   m_Canvas: {fileID: 1051067667}
 --- !u!1001 &1183909795
 Prefab:
