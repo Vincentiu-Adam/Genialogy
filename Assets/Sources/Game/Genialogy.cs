@@ -69,6 +69,8 @@ public class Genialogy : MonoBehaviour
 
     private List<Alien> m_Aliens = new List<Alien>();
 
+    private VictoryUI m_VictoryUI;
+
     private void Awake()
     {
         //load all genes from resources
@@ -83,6 +85,8 @@ public class Genialogy : MonoBehaviour
         FetchAndInitAliens();
 
         SetDominantGenesAvailableText(m_DominantGenesAvailable);
+
+        m_VictoryUI = GameObject.FindGameObjectWithTag("VictoryUI").GetComponent<VictoryUI>();
     }
 
     private void OnDestroy()
@@ -116,7 +120,6 @@ public class Genialogy : MonoBehaviour
         //check if last alien has the same gene values as our objective
         if (IsObjectiveReached(m_Aliens[m_Aliens.Count - 1]))
         {
-            Debug.Log("WAIT FOR IIIIT!!!");
             Invoke("ObjectiveComplete", 1f);
             return;
         }
@@ -264,7 +267,7 @@ public class Genialogy : MonoBehaviour
     private void ObjectiveComplete()
     {
         int stars = (int) Mathf.Max(0f, MaxStars - m_Tries);
-        Debug.Log("Objective completed with " + stars + " stars");
+        m_VictoryUI.Init(stars);
     }
 
     private bool IsObjectiveReached(Alien finalAlien)

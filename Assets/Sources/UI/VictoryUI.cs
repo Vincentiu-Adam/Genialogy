@@ -1,16 +1,32 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 using System.Collections.Generic;
-using UnityEngine;
 
-public class VictoryUI : MonoBehaviour {
+public class VictoryUI : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject m_Panel;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private List<Toggle> m_Stars;
+
+    public void Init(int stars)
+    {
+        for (int i = 0; i < stars; i++)
+        {
+            m_Stars[i].isOn = true;
+        }
+
+        m_Panel.SetActive(true);
+
+        //stop zoom
+        GameObject.Find("UI Canvas").GetComponent<Zoom>().enabled = false;
+    }
+
+    public void ReplayLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

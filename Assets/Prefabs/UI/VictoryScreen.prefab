@@ -189,6 +189,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 224753892824728008}
+  - component: {fileID: 114638325460735196}
   m_Layer: 5
   m_Name: VictoryScreen
   m_TagString: VictoryUI
@@ -425,7 +426,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114795008916050684}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114638325460735196}
+        m_MethodName: ReplayLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114245951545192356
@@ -721,6 +733,22 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!114 &114638325460735196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1567880399624216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5642fe3f53157df438a58529d30d0fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Panel: {fileID: 1470690080229538}
+  m_Stars:
+  - {fileID: 114524396243226954}
+  - {fileID: 114568700205117874}
+  - {fileID: 114922003407689082}
 --- !u!114 &114695044486907444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1087,7 +1115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71.49997, y: 15.500019}
+  m_AnchoredPosition: {x: -71.49997, y: 15.500015}
   m_SizeDelta: {x: 163, y: 131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224412457933149962
@@ -1259,7 +1287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -234.50003, y: 15.500019}
+  m_AnchoredPosition: {x: -234.50003, y: 15.500015}
   m_SizeDelta: {x: 163, y: 131}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224863116705928462
