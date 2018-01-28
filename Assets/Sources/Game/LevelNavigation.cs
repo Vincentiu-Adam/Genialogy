@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelNavigation : MonoBehaviour {
+	public bool instructions;
 
 	public void LoadSceneMode (string sceneName)
 	{
