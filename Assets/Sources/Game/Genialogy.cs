@@ -21,6 +21,8 @@ public class AlienGeneData
 {
     public GeneType GeneType;
 
+    public bool Ignore;
+
     public int Value;
 }
 
@@ -109,6 +111,14 @@ public class Genialogy : MonoBehaviour
 
             generationIndex += aliensPerGeneration;
             generationsRemaining--;
+        }
+
+        //check if last alien has the same gene values as our objective
+        if (IsObjectiveReached(m_Aliens[m_Aliens.Count - 1]))
+        {
+            Debug.Log("WAIT FOR IIIIT!!!");
+            Invoke("ObjectiveComplete", 1f);
+            return;
         }
 
         m_Tries++;
@@ -200,14 +210,6 @@ public class Genialogy : MonoBehaviour
         {
             FuseAlienGeneType(m_PickedGenes[i], firstParent, secondParent);
         }
-
-        //check if last alien has the same gene values as our objective
-        if (IsObjectiveReached(m_Aliens[m_Aliens.Count - 1]))
-        {
-            Debug.Log("WAIT FOR IIIIT!!!");
-            Invoke("ObjectiveComplete", 1f);
-            return;
-        }
     }
 
     private void FuseAlienGeneType(GeneType geneType, Alien firstParent, Alien secondParent)
@@ -271,9 +273,15 @@ public class Genialogy : MonoBehaviour
         {
             GeneType currentGeneType = m_PickedGenes[i];
 
+            AlienGeneData alienGeneData = GetAlienGeneFromType(currentGeneType);
+            if (alienGeneData.Ignore)
+            {
+                continue;
+            }
+
             bool isColor = currentGeneType == GeneType.COLOR;
 
-            int targetAlienValue = GetAlienGeneValueFromType(currentGeneType),
+            int targetAlienValue = alienGeneData.Value,
                 finalAlienValue  = isColor ? finalAlien.ColorGeneValue.Value : finalAlien.GetGeneFromType(currentGeneType).Value;
 
             if (targetAlienValue != finalAlienValue)
@@ -334,18 +342,18 @@ public class Genialogy : MonoBehaviour
         return null;
     }
 
-    public int GetAlienGeneValueFromType(GeneType geneType)
+    public AlienGeneData GetAlienGeneFromType(GeneType geneType)
     {
         for (int i = 0; i < m_TargetGeneValues.Count; i++)
         {
             AlienGeneData currentGeneValue = m_TargetGeneValues[i];
             if (currentGeneValue.GeneType == geneType)
             {
-                return currentGeneValue.Value;
+                return currentGeneValue;
             }
         }
 
-        return -1;
+        return null;
     }
 
     private void SetDominantGenesAvailableText(int dominantGenesAvailable)
