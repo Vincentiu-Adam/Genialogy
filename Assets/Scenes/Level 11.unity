@@ -3765,6 +3765,22 @@ Prefab:
       propertyPath: m_ColorGeneValue.Value
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 114677351797705666, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5a6d60db3d8cee468fd565a4b9867ae,
+        type: 3}
+    - target: {fileID: 114053451880028950, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_Padding.m_Top
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114053451880028950, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_Padding.m_Bottom
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb4424b8fd636294b84aa22f7d9c095d, type: 2}
   m_IsPrefabParent: 0

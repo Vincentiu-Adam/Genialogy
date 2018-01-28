@@ -1035,6 +1035,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_ColorGeneValue.Value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb4424b8fd636294b84aa22f7d9c095d, type: 2}
   m_IsPrefabParent: 0
@@ -1490,7 +1495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_GenesPerCharacter: 5
   m_Generations: 4
-  m_DominantGenesAvailable: 10
+  m_DominantGenesAvailable: 12
   m_TargetGeneValues:
   - GeneType: 0
     Ignore: 0
@@ -3604,6 +3609,22 @@ Prefab:
         type: 2}
       propertyPath: m_LocalScale.z
       value: 1.00008
+      objectReference: {fileID: 0}
+    - target: {fileID: 114677351797705666, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e5a6d60db3d8cee468fd565a4b9867ae,
+        type: 3}
+    - target: {fileID: 114053451880028950, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_Padding.m_Top
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 114053451880028950, guid: fb4424b8fd636294b84aa22f7d9c095d,
+        type: 2}
+      propertyPath: m_Padding.m_Bottom
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb4424b8fd636294b84aa22f7d9c095d, type: 2}
