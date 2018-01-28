@@ -44,6 +44,9 @@ public class Genialogy : MonoBehaviour
     private Transform m_AlienContainer;
 
     [SerializeField]
+    private List<GeneType> m_OverrideGenePicks;
+
+    [SerializeField]
     private GeneSlot m_GeneSlotPrefab;
 
     [SerializeField]
@@ -147,6 +150,13 @@ public class Genialogy : MonoBehaviour
 
         //setup picked genes in a prefedined order
         m_PickedGenes.Clear();
+
+        if (m_OverrideGenePicks.Count != 0)
+        {
+            m_PickedGenes.AddRange(m_OverrideGenePicks);
+            return;
+        }
+
         m_PickedGenes.AddRange(new GeneType[] {GeneType.HAT, GeneType.HEAD, GeneType.BODY, GeneType.LEG, GeneType.COLOR});
     }
 

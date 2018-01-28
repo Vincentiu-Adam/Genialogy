@@ -118,7 +118,11 @@ public class Alien : MonoBehaviour
     {
         for (int i = 0; i < m_GeneValues.Count; i++)
         {
-            m_GeneValues[i].GeneSlot.RemoveCallback(OnDominantToggleClicked);
+            AlienGeneValue currentGeneValue = m_GeneValues[i];
+            if (currentGeneValue.GeneSlot != null)
+            {
+                currentGeneValue.GeneSlot.RemoveCallback(OnDominantToggleClicked);
+            }
         }
     }
 
@@ -218,7 +222,11 @@ public class Alien : MonoBehaviour
 
         for (int i = 0; i < m_GeneValues.Count; i++)
         {
-            m_GeneValues[i].GeneSlot.Image.color = color;
+            AlienGeneValue currentGeneValue = m_GeneValues[i];
+            if (currentGeneValue.GeneSlot != null)
+            {
+                currentGeneValue.GeneSlot.Image.color = color;
+            }
         }
     }
 
