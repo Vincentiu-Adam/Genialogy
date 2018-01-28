@@ -24,6 +24,16 @@ public class VictoryUI : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
+    }
+
     public void Init(int stars)
     {
         for (int i = 0; i < stars; i++)
@@ -46,5 +56,10 @@ public class VictoryUI : MonoBehaviour
     {
         CurrentLevel = Mathf.Min(SettingsScriptableObject.MaxLevel, CurrentLevel + 1);
         SceneManager.LoadScene("Level " + CurrentLevel);
+    }
+
+    private void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        CurrentLevel = scene.buildIndex;
     }
 }
