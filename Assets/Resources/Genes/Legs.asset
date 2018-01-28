@@ -37,3 +37,6 @@ MonoBehaviour:
   - Name: Tentacles
     Image: {fileID: 21300000, guid: f93e363ffd5a11341a55ee95753787d1, type: 3}
     Outline: {fileID: 21300000, guid: 76021f731f917df4f9b85421755f77f5, type: 3}
+  - Name: GGJLegs
+    Image: {fileID: 21300000, guid: 7b73b71079ee15345a3385f527e171da, type: 3}
+    Outline: {fileID: 21300000, guid: 00636f7760d39924da6c9d12fda84950, type: 3}

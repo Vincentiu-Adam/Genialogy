@@ -37,3 +37,6 @@ MonoBehaviour:
   - Name: WoolyBody
     Image: {fileID: 21300000, guid: c4d0e420f844d1b4d86fbab86d16fb4f, type: 3}
     Outline: {fileID: 21300000, guid: 8097f7257593a3c469b18363377e0a18, type: 3}
+  - Name: GGJBody
+    Image: {fileID: 21300000, guid: 636c2097c314c554585437a12e3fdf13, type: 3}
+    Outline: {fileID: 21300000, guid: 679e1fc8892982444ac2c6690b016632, type: 3}

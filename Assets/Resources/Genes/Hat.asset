@@ -37,3 +37,6 @@ MonoBehaviour:
   - Name: Unicorn
     Image: {fileID: 21300000, guid: 8d6ec653e6b7d3c43adb0ffc28872949, type: 3}
     Outline: {fileID: 21300000, guid: fa4313864b4cd14449f081e7c9e14f69, type: 3}
+  - Name: GGJHat
+    Image: {fileID: 21300000, guid: 26dfbb6e5e55b4143acd95380dd65562, type: 3}
+    Outline: {fileID: 21300000, guid: 75a114572ef3de0479dc033d955de8c6, type: 3}

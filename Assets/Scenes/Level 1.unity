@@ -133,20 +133,20 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1180114}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 519713785}
   - {fileID: 1307888647}
   - {fileID: 2114073297}
-  m_Father: {fileID: 1051067668}
-  m_RootOrder: 2
+  m_Father: {fileID: 1173727522}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1820, y: 980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &117225580 stripped
 MonoBehaviour:
@@ -381,12 +381,12 @@ Prefab:
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[0].Value
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[1].Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
@@ -462,14 +462,19 @@ MonoBehaviour:
   m_DominantGenesAvailable: 10
   m_TargetGeneValues:
   - GeneType: 0
-    Value: 0
+    Ignore: 0
+    Value: 4
   - GeneType: 1
+    Ignore: 0
     Value: 2
   - GeneType: 2
+    Ignore: 0
     Value: 4
   - GeneType: 3
-    Value: 0
+    Ignore: 0
+    Value: 2
   - GeneType: 4
+    Ignore: 0
     Value: 3
   m_AlienContainer: {fileID: 1180115}
   m_GeneSlotPrefab: {fileID: 114648788229262218, guid: 2ff43ad6291688d428a9e53fe345591b,
@@ -741,8 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2873ae8e3fce5a47bce013adb5b0a13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Board: {fileID: 1180115}
-  m_Limits: {x: 450, y: 110}
+  m_Board: {fileID: 1173727522}
+  m_Limits: {x: 750, y: 350}
 --- !u!1 &1051067664
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,8 +835,7 @@ RectTransform:
   m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
   m_Children:
   - {fileID: 1002405824}
-  - {fileID: 2072414082}
-  - {fileID: 1180115}
+  - {fileID: 1173727522}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -851,9 +855,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea004a782577fb4c89ea83d821f2384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Speed: 25
-  m_Limits: {x: 1, y: 2.5}
+  m_Speed: 15
+  m_Limits: {x: 1, y: 3}
   m_Canvas: {fileID: 1051067667}
+--- !u!1 &1173727521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1173727522}
+  m_Layer: 0
+  m_Name: Level
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1173727522
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1173727521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1180115}
+  - {fileID: 2072414082}
+  m_Father: {fileID: 1051067668}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0.0000009536743}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1183909795
 Prefab:
   m_ObjectHideFlags: 0
@@ -1193,12 +1232,12 @@ Prefab:
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[0].Value
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_GeneValues.Array.data[1].Value
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
@@ -1221,7 +1260,7 @@ Prefab:
     - target: {fileID: 114225135460509622, guid: fb4424b8fd636294b84aa22f7d9c095d,
         type: 2}
       propertyPath: m_ColorGeneValue.Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fb4424b8fd636294b84aa22f7d9c095d, type: 2}
@@ -1609,13 +1648,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1652617926}
-  m_Father: {fileID: 1051067668}
+  m_Father: {fileID: 1173727522}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 244, y: -165}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1820, y: 980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2114073296
 Prefab:
