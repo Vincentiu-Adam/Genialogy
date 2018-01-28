@@ -97,7 +97,7 @@ MonoBehaviour:
     GeneSlot: {fileID: 0}
   m_ColorGeneValue:
     IsDominant: 0
-    Value: 0
+    Value: -1
     ColorGeneData: {fileID: 11400000, guid: 79ea22d5386ad694c9dca9a5114e5990, type: 2}
     GeneSlot: {fileID: 0}
   m_GeneContainer: {fileID: 224634318688616292}

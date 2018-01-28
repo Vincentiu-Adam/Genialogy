@@ -193,8 +193,13 @@ public class Alien : MonoBehaviour
 
     private Color GetGeneColor(AlienColorGeneValue colorGeneValue)
     {
-        return (colorGeneValue.Value < 0 || colorGeneValue.Value >= colorGeneValue.ColorGeneData.Values.Count) ? colorGeneValue.ColorGeneData.DefaultColor :
-                                                                                                                 colorGeneValue.ColorGeneData.Values[colorGeneValue.Value];
+        if (colorGeneValue.Value < 0)
+        {
+            return Color.white;
+        }
+
+        return colorGeneValue.Value >= colorGeneValue.ColorGeneData.Values.Count ? colorGeneValue.ColorGeneData.DefaultColor :
+                                                                                   colorGeneValue.ColorGeneData.Values[colorGeneValue.Value];
     }
 
     private void SetGeneImage(AlienGeneValue geneValue)
@@ -213,7 +218,8 @@ public class Alien : MonoBehaviour
 
     private void SetGeneColor()
     {
-        m_ColorGeneValue.GeneSlot.Image.color = GetGeneColor(m_ColorGeneValue);
+        m_ColorGeneValue.GeneSlot.Image.color          = GetGeneColor(m_ColorGeneValue);
+        m_ColorGeneValue.GeneSlot.ImageOutLine.enabled = false; //disable image for color
     }
 
     private void SetAllGenesToColor(AlienColorGeneValue colorGeneValue)
